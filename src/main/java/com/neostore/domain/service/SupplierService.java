@@ -50,6 +50,7 @@
 
         public Supplier put(int id, Supplier supplier) {
             validateSupplierExists(id);
+            validateCnpjForUpdate(supplier.getCnpj(), id);
             validateCnpjAndEmail(supplier);
             supplier.setId(id);
             return supplierRepository.Edit(supplier);
@@ -95,6 +96,13 @@
         private void validateEmailFormat(String email) {
             if (!EmailValidation.validate(email)) {
                 throw new EmailBusinessException("Invalid email format", Response.Status.BAD_REQUEST);
+            }
+        }
+        
+        private void validateCnpjForUpdate(String cnpj, int currentSupplierId) {
+            Supplier supplierWithCnpj = supplierRepository.findByCnpj(cnpj);
+            if (supplierWithCnpj != null && supplierWithCnpj.getId() != currentSupplierId) {
+                throw new CnpjBusinessException(String.format("CNPJ %s is already in use by another supplier.", cnpj), Response.Status.CONFLICT);
             }
         }
     }
