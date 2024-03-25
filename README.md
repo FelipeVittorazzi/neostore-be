@@ -1,6 +1,6 @@
 # NeoStore
 
-A aplicação NeoStore é um sistema de gerenciamento de fornecedores para uma loja fictícia, permitindo o cadastro, a edição, a exclusão e a listagem paginada de fornecedores.
+A aplicação NeoStore é um sistema de gerenciamento de fornecedores para uma loja fictícia, permitindo o cadastro, a edição, a exclusão, e a listagem paginada de fornecedores.
 
 ## Funcionalidades
 
@@ -12,11 +12,16 @@ A aplicação NeoStore é um sistema de gerenciamento de fornecedores para uma l
 
 ## Tecnologias Utilizadas
 
-- Java
-- JAX-RS para construção da API REST
-- Hibernate/JPA para persistência de dados
-- Maven para gerenciamento de dependências e build
-- Banco de dados MySQL
+- **Java**: Linguagem de programação para desenvolvimento da aplicação.
+- **JAX-RS (Jersey 2.30.1)**: Para construção da API REST, facilitando a comunicação entre o cliente e o servidor.
+- **Hibernate/JPA (Hibernate 5.4.12.Final)**: Para persistência de dados, mapeamento objeto-relacional e implementação da especificação JPA para acesso ao banco de dados.
+- **Maven**: Para gerenciamento de dependências e automação de build.
+- **MySQL (MySQL Connector/J 8.0.19)**: Como sistema de gerenciamento de banco de dados.
+- **JUnit (JUnit 4.13.2 e JUnit Jupiter 5.7.0)**: Para testes unitários e de integração.
+- **Jackson (Jackson Databind 2.17.0)**: Para serialização e deserialização de objetos Java para JSON e vice-versa.
+- **Hibernate Validator (Hibernate Validator 7.0.1.Final)**: Para validação de dados de entrada com base nas anotações de validação do Bean Validation.
+- **Lombok (1.18.30)**: Para redução de código boilerplate com anotações que geram código em tempo de compilação, como getters, setters, e constructors.
+- **Jakarta Persistence (Jakarta Persistence-api 2.2.3)** e **Jakarta Validation (Jakarta Validation-api 2.0.2)**: Para padronização e validação de persistência de dados.
 
 ## Pré-requisitos
 
@@ -53,6 +58,8 @@ A aplicação estará disponível em `http://localhost:8080/`.
 
 - **GET** `/supplier` - Lista todos os fornecedores (suporta paginação via query params `page` e `size`).
 - **GET** `/supplier/{id}` - Busca um fornecedor pelo ID.
+- **GET** `/supplier/cnpj/{cnpj}` - Busca um fornecedor pelo CNPJ.
+- **GET** `/supplier/email/{email}` - Busca um fornecedor pelo Email.
 - **POST** `/supplier` - Cadastra um novo fornecedor. O corpo da requisição deve conter o nome, email, descrição e CNPJ do fornecedor.
 - **PUT** `/supplier/{id}` - Atualiza os dados de um fornecedor existente.
 - **DELETE** `/supplier/{id}` - Remove um fornecedor do sistema.
